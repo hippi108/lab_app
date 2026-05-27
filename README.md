@@ -38,6 +38,8 @@ npm run dev
 - ブロック種別: 見出し、本文、試薬リスト、手順、チェックリスト、計算ブロック、タイマー、カウンター、メモ をサポートします。
 - 計算ブロックは式を編集するとプレビューで即時評価されます（`lib/calculations/evaluateCalculationBlock.ts`）。
 - 編集内容は `localStorage` に保存され、ページを再読み込みしても残ります（`lib/repositories/protocolRepository.ts` の `saveProtocol` を利用）。
+- `/protocols` はクライアントサイドで保存済みプロトコルを読み込み、`/protocols/[id]` で詳細編集できるようにしました。
+- `/run` には実験メモ、チェックリスト、材料リスト、計算結果、タイマー、カウンターをまとめた実験支援ビューを追加しました。
 
 ## Git リポジトリの初期化
 

@@ -1,8 +1,18 @@
-import { sampleProtocols } from '@/data/sample-protocols';
+'use client';
+
+import { useEffect, useState } from 'react';
 import { Layout } from '@/components/layout/MainLayout';
 import { ProtocolCard } from '@/components/protocol/ProtocolCard';
+import { getProtocols } from '@/lib/repositories/protocolRepository';
+import type { Protocol } from '@/types/protocol';
 
 export default function ProtocolsPage() {
+  const [protocols, setProtocols] = useState<Protocol[]>(getProtocols());
+
+  useEffect(() => {
+    setProtocols(getProtocols());
+  }, []);
+
   return (
     <Layout>
       <div className="space-y-6 px-6 py-8">
@@ -16,7 +26,7 @@ export default function ProtocolsPage() {
           </button>
         </div>
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {sampleProtocols.map((protocol) => (
+          {protocols.map((protocol) => (
             <ProtocolCard key={protocol.id} protocol={protocol} />
           ))}
         </div>
