@@ -1,9 +1,9 @@
+/* eslint-disable no-unused-vars */
 'use client';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { getProtocolById, saveProtocol, getProtocols } from '@/lib/repositories/protocolRepository';
 import type { Protocol, ProtocolBlock, CalculationBlock } from '@/types/protocol';
 import { evaluateCalculationBlock } from '@/lib/calculations/evaluateCalculationBlock';
-import { calculatePcr } from '@/lib/calculations/pcr';
 
 type Props = { id: string };
 
@@ -11,7 +11,15 @@ function uid(prefix = '') {
   return `${prefix}${Date.now()}-${Math.floor(Math.random() * 1000)}`;
 }
 
-function BlockRow({ block, index, onEdit, onRemove, onMove }: { block: ProtocolBlock; index: number; onEdit: (b: ProtocolBlock) => void; onRemove: (id: string) => void; onMove: (from: number, to: number) => void }) {
+type BlockRowProps = {
+  block: ProtocolBlock;
+  index: number;
+  onEdit: (_b: ProtocolBlock) => void;
+  onRemove: (_id: string) => void;
+  onMove: (_from: number, _to: number) => void;
+};
+
+function BlockRow({ block, index, onEdit, onRemove, onMove }: BlockRowProps) {
   return (
     <div className="group mb-3 rounded-2xl border border-slate-200 bg-white p-3">
       <div className="flex items-start justify-between gap-3">
